@@ -31,6 +31,10 @@ This vault is designed to help you study from the lowest level of computing upwa
 10. [[09-Note-Template]]
 11. [[10-Weekly-Review]]
 12. [[11-Knowledge-Map]]
+13. [[12-QEMU-NASM-GCC-Experiments]]
+14. [[13-Experiment-Progress-Log]]
+15. [[14-Environment-Setup-Guide]]
+16. [[15-Mini-Kernel-Project-Plan]]
 
 ## Recommended environment
 
@@ -62,6 +66,7 @@ The learning path is:
 - Add code examples where helpful.
 - Add quick summary blocks at the end of each note.
 - Use the review template after each study session.
+- Use the project plan when building your real kernel prototype.
 
 ## Questions to keep revisiting
 
