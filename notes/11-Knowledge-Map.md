@@ -1,100 +1,98 @@
-# 11. Knowledge Map
+# 11. 知识地图
 
-This file shows how the OS topics connect to each other.
+这个文件展示了各个操作系统主题之间的关系。
 
-## 1. Foundation layer
+## 1. 基础层
 
-- binary logic
-- CPU execution
-- registers
+- 二进制与逻辑
+- CPU 运行原理
+- 寄存器
 - ALU
-- memory hierarchy
-- stack vs heap
+- 存储层次结构
+- 栈与堆
 
-## 2. Boot layer
+## 2. 启动层
 
 - BIOS / UEFI
-- bootloader
-- boot sector
-- real mode
-- protected mode
-- long mode
+- 引导程序
+- 启动扇区
+- 实模式
+- 保护模式
+- 长模式
 - GDT
 
-## 3. Memory layer
+## 3. 内存层
 
-- virtual memory
-- paging
-- page tables
+- 虚拟内存
+- 分页
+- 页表
 - CR3
-- page fault
-- user space / kernel space
+- 缺页异常
+- 用户态 / 内核态
 
-## 4. Process layer
+## 4. 进程层
 
-- process vs program
-- process lifecycle
-- thread vs process
-- context switch
-- scheduler
-- time slice
+- 程序与进程
+- 进程生命周期
+- 线程与进程
+- 上下文切换
+- 调度器
+- 时间片
 
-## 5. Concurrency layer
+## 5. 并发层
 
-- race conditions
-- mutexes
-- semaphores
-- condition variables
-- deadlocks
-- starvation
+- 竞争条件
+- 互斥锁
+- 信号量
+- 条件变量
+- 死锁
+- 饥饿
 
-## 6. Resource abstraction layer
+## 6. 资源抽象层
 
-- system calls
-- user mode / kernel mode
+- 系统调用
+- 用户态 / 内核态
 - fork
 - exec
 - IPC
-- filesystem
+- 文件系统
 
-## 7. Device layer
+## 7. 设备层
 
-- device drivers
-- interrupt handling
+- 设备驱动
+- 中断处理
 - DMA
-- block devices
-- character devices
-- I/O scheduling
+- 块设备
+- 字符设备
+- I/O 调度
 
-## 8. End-to-end mental model
-
-The system looks like this:
+## 8. 总体脑图
 
 ```text
-Program -> Assembly -> CPU -> Memory -> Page Tables -> Process
-        -> System Call -> Kernel -> Device Driver -> Hardware
-        -> File API -> Filesystem -> Storage
-        -> IPC -> Other Processes
+程序 -> 汇编 -> CPU -> 内存 -> 页表 -> 进程
+    -> 系统调用 -> 内核 -> 设备驱动 -> 硬件
+    -> ��件 API -> 文件系统 -> 存储
+    -> IPC -> 其他进程
 ```
 
-## 9. Key relationships
+## 9. 关键关系
 
-- Boot code creates the environment needed for OS execution.
-- Paging enables process isolation and memory safety.
-- System calls bridge user programs and kernel services.
-- Processes and threads decide how work is scheduled.
-- IPC and filesystem allow processes to cooperate and persist state.
-- Device drivers and interrupt handling connect software to real hardware.
+- 启动代码为操作系统运行创造环境。
+- 分页实现进程隔离和内存保护。
+- 系统调用连接用户程序和内核服务。
+- 进程和线程决定任务如何调度。
+- IPC 和文件系统让进程共享通信和持久数据。
+- 设备驱动和中断把软件连接到真实硬件。
 
-## 10. Long-term learning principle
+## 10. 长期学习原则
 
-Do not memorize isolated concepts. Always connect each concept to a lower-level mechanism and a higher-level purpose.
+不要孤立记忆概念，要始终把每个概念和更底层机制、以及更高层目的关联起来。
 
-## 11. Example questions to test understanding
+## 11. 常见测试问题
 
-- How does a program become a process?
-- How does the CPU know where the code is?
-- Why does a user program not directly access device registers?
-- Why is paging mandatory in modern OS design?
-- Why is a filesystem needed if memory exists?
-- How does an interrupt differ from a system call?
+- 程序如何变为进程？
+- CPU 是怎么知道代码在哪的？
+- 为什么用户程序不能直接访问设备寄存器？
+- 为什么现代 OS 一定需要分页？
+- 如果内存已经存在，为什么还要文件系统？
+- 中断和系统调用有什么区别？

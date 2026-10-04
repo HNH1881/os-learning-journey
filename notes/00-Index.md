@@ -1,48 +1,54 @@
-# 00. Index
+# 00. 索引
 
-## Learning map
+## 学习地图
 
-- [[01-Computer-Principles]]
-- [[02-Assembly-Language]]
-- [[03-Boot-and-CPU-Modes]]
-- [[04-Memory-and-Paging]]
-- [[05-Processes-and-Threads]]
-- [[06-IPC-and-Filesystem]]
-- [[07-I-O-and-Drivers]]
-- [[08-Study-Checklist]]
+- [[01-计算机原理]]
+- [[02-汇编语言]]
+- [[03-启动与CPU模式]]
+- [[04-内存与分页]]
+- [[05-进程与线程]]
+- [[06-IPC与文件系统]]
+- [[07-I/O与设备驱动]]
+- [[08-学习清单]]
+- [[09-笔记模板]]
+- [[10-每周复盘]]
+- [[11-知识地图]]
+- [[12-QEMU+NASM+GCC实验清单]]
+- [[13-实验进度日志]]
+- [[14-环境搭建指南]]
+- [[15-mini-kernel项目计划]]
 
-## Key themes
+## 关键主题
 
-- CPU and registers
-- memory hierarchy
-- stack vs heap
-- boot sequence
-- multithreading and scheduling
-- paging and virtual memory
-- filesystem and inode
-- interrupts and I/O
-- user mode vs kernel mode
-- system calls and OS abstractions
+- CPU 和寄存器
+- 内存层次结构
+- 栈和堆
+- 启动流程
+- 多线程与调度
+- 分页与虚拟内存
+- 文件系统与 inode
+- 中断与 I/O
+- 用户态和内核态
+- 系统调用与操作系统抽象
 
-## High-level story
+## 总体脉络
 
-Computers start with raw hardware. The OS builds abstractions on top of that:
-- instructions and processes
-- memory and paging
-- file abstraction
-- device handling
-- secure execution
+计算机从底层硬件开始，操作系统在其上建立抽象：
+- 指令与进程
+- 内存与分页
+- 文件抽象
+- 设备管理
+- 安全执行
 
-## Summary
+## 学习原则
 
-This vault is a practical path from hardware to operating systems.
-The key is to connect concepts to code and actual execution on QEMU.
+不要只背概念，一定要配合：
+- 汇编示例
+- C 代码示例
+- QEMU 实验
+- objdump 反汇编
+- gdb 调试
 
-## Study principle
+## 一句话总结
 
-Never learn only abstract theory. Always pair theory with:
-- assembly examples
-- C examples
-- QEMU execution
-- disassembly with objdump
-- debugging with gdb
+这套知识库的目标，是从硬件走到操作系统，再到内核化思维，形成完整的底层系统认知。

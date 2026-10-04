@@ -1,73 +1,73 @@
-# 10. Weekly Review
+# 10. 每周复盘
 
-Use this note every week to review the concepts you studied.
+每周使用这个笔记复盘一次。
 
-## Weekly study summary
+## 本周学习概览
 
-- Week number:
-- Topics covered:
-- Hours studied:
-- Important projects or experiments:
+- 周数：
+- 学习内容：
+- 学习时长：
+- 进行的实验：
 
-## What I learned
+## 本周学到了什么
 
-### 1. High-level concepts
+### 1. 高层概念
 
-- concept 1:
-- concept 2:
-- concept 3:
+- 概念 1：
+- 概念 2：
+- 概念 3：
 
-### 2. Low-level mechanisms
+### 2. 底层机制
 
-- mechanism 1:
-- mechanism 2:
-- mechanism 3:
+- 机制 1：
+- 机制 2：
+- 机制 3：
 
-## Code or experiments completed
+## 做过的实验
 
-- Experiment 1:
-- Result:
-- What I learned:
+- 实验 1：
+- 结果：
+- 收获：
 
-- Experiment 2:
-- Result:
-- What I learned:
+- 实验 2：
+- 结果：
+- 收获：
 
-## Mistakes and confusion
+## 困惑与错误
 
-- Confusion 1:
-- Cause:
-- Fix:
+- 困惑 1：
+- 原因：
+- 修正方法：
 
-- Confusion 2:
-- Cause:
-- Fix:
+- 困惑 2：
+- 原因：
+- 修正方法：
 
-## Important questions still open
+## 仍未解决的问题
 
-- Question 1:
-- Question 2:
-- Question 3:
+- 问题 1：
+- 问题 2：
+- 问题 3：
 
-## One-page summary
+## 一页总结
 
-Write a short summary of this week's learning in 5-8 bullet points.
+用 5-8 条 bullet 写出本周的重点。
 
-## Next week plan
+## 下周计划
 
-- Goal 1:
-- Goal 2:
-- Goal 3:
-- Practice target:
-- Reading target:
+- 目标 1：
+- 目标 2：
+- 目标 3：
+- 实践目标：
+- 阅读目标：
 
-## Final reflection
+## 最后的反思
 
-What is the most important thing I understood this week?
+本周最重要的理解是什么？
 
-## Weekly self-check
+## 自检
 
-- [ ] I can explain the core idea in plain English.
-- [ ] I can connect theory to code.
-- [ ] I can explain the flow with a diagram or pseudocode.
-- [ ] I know what I still need to learn.
+- [ ] 我能够用自己的话解释核心概念。
+- [ ] 我能把理论和代码连接起来。
+- [ ] 我能用伪代码或图解释流程。
+- [ ] 我知道自己的薄弱点在哪里。

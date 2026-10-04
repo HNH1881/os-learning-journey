@@ -1,117 +1,115 @@
-# 09. Note Template
+# 09. 笔记模板
 
-Use this template when creating a new note for OS study.
+使用这个模板来记录新的学习内容。
 
-## 1. Topic
+## 1. 主题
 
-- Title:
-- Date:
-- Related notes:
+- 标题：
+- 日期：
+- 相关笔记：
 
-## 2. Concept summary
+## 2. 概念总结
 
-Explain the concept in plain words.
+用简单语言解释该概念。
 
-## 3. Core idea
+## 3. 核心思想
 
-Write the single most important idea in one sentence.
+一句话概括最关键的点。
 
-## 4. Why it matters
+## 4. 为什么重要
 
-Why is this concept important in a real operating system?
+它为何在真实操作系统中重要？
 
-## 5. Key definitions
+## 5. 关键定义
 
-- Definition 1:
-- Definition 2:
-- Definition 3:
+- 定义 1：
+- 定义 2：
+- 定义 3：
 
-## 6. Mechanism / how it works
+## 6. 工作机制
 
-Describe the mechanism step by step.
+按步骤解释它如何工作。
 
-## 7. Example
-
-Use a small example or pseudocode.
+## 7. 示例
 
 ```c
-// example here
+// 示例代码
 ```
 
-or
+或
 
 ```asm
-; assembly example here
+; 示例汇编
 ```
 
-## 8. Common pitfalls
+## 8. 常见坑
 
-- Pitfall 1:
-- Pitfall 2:
-- Pitfall 3:
+- 坑 1：
+- 坑 2：
+- 坑 3：
 
-## 9. Important details
+## 9. 重要细节
 
-- detail 1
-- detail 2
-- detail 3
+- 细节 1
+- 细节 2
+- 细节 3
 
-## 10. Related questions
+## 10. 相关问题
 
-- Q1:
-- Q2:
-- Q3:
+- 问题 1：
+- 问题 2：
+- 问题 3：
 
-## 11. Review questions
+## 11. 复习问题
 
-- Explain this concept in your own words.
-- What problem does it solve?
-- Why does it matter for OS design?
-- Which lower-level concept does it depend on?
+- 用自己的话解释这个概念。
+- 它解决了什么问题？
+- 为什么它对 OS 很重要？
+- 依赖于哪些更底层的概念？
 
-## 12. Quick summary
+## 12. 快速总结
 
-Write a 3-5 sentence summary.
+写 3-5 句话总结。
 
-## 13. Next step
+## 13. 下一步
 
-What should be learned next?
+下一步应该学什么？
 
-## Example fill-in
+## 示例填充
 
-### Topic
-CPU registers
+### 主题
+CPU 寄存器
 
-### Concept summary
-Registers are fast storage inside the CPU used during instruction execution.
+### 概念总结
+寄存器是 CPU 内部的高速存储区域，用于当前指令的计算和数据处理。
 
-### Core idea
-Registers hold the CPU's working state while instructions run.
+### 核心思想
+寄存器保存 CPU 当前的工作状态。
 
-### Why it matters
-Without registers, the CPU would have no convenient place to keep currently processed data.
+### 为什么重要
+没有寄存器，CPU 就无法高效运算和处理临时数据。
 
-### Key definitions
-- register
-- instruction pointer
-- stack pointer
+### 关键定义
+- 寄存器
+- 指令指针
+- 栈指针
 
-### Mechanism
-The CPU fetches instructions, loads operands into registers, executes logic, and stores results back to registers or memory.
+### 工作机制
+CPU 从内存取指令，加载寄存器中的操作数，执行指令，再把结果��回寄存器或内存。
 
-### Example
+### 示例
 ```asm
 mov rax, 10
 mov rbx, 20
 add rax, rbx
 ```
 
-### Common pitfalls
-- confusing registers with memory
-- forgetting that registers are tiny and limited
-- assuming a high-level language variable maps directly to one register
+### 常见坑
+- 把寄存器和内存混淆
+- 忘了寄存器数量有限
+- 认为高层变量直接对应一个寄存器
 
-### Review questions
-- What is the difference between a register and memory?
-- Why do function calls use the stack?
-- Why do CPUs need registers at all?
+### 复习问题
+- 寄存器和内存有什么区别？
+- 为什么函数调用要用栈？
+- 为什么 CPU 需要寄存器？

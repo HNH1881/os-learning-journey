@@ -1,128 +1,129 @@
-# 01. Computer Principles
+# 01. 计算机原理
 
-## 1. What is a computer?
+## 1. 什么是计算机
 
-A computer is a machine that executes instructions on data. It takes input, processes it, and produces output.
+计算机本质上是一个执行指令处理数据的机器。它接受输入、处理数据、输出结果。
 
-Core idea:
-- hardware executes instructions
-- software gives instructions
-- the OS coordinates resources
+核心思想：
+- 硬件执行指令
+- 软件提供指令
+- 操作系统协调资源
 
-## 2. Major components
+## 2. 计算机的主要组成部分
 
-- CPU: executes instructions
-- RAM: working memory
-- Disk: persistent storage
-- Bus: data pathway
-- I/O devices: keyboard, mouse, display, network, etc.
+- CPU：执行指令
+- RAM：运行时存储器
+- 磁盘：持久化存储
+- 总线：连接各部件
+- I/O设备：键盘、显示器、网络等
 
-## 3. Why binary?
+## 3. 为什么用二进制
 
-Computers are electronic devices. Basic electrical states are easy to represent as:
-- 0 = low voltage
-- 1 = high voltage
+计算机靠电路工作，电平状态非常自然地对应：
+- 0 = 低电平
+- 1 = 高电平
 
-This makes binary a natural representation for logic and arithmetic.
+因此二进制成为最自然的计算基础。
 
-## 4. Number systems
+## 4. 数制
 
-- binary
-- octal
-- decimal
-- hexadecimal
+- 二进制
+- 八进制
+- 十进制
+- 十六进制
 
-Hex is especially useful in systems work because:
-- 1 hex digit = 4 bits
-- it compresses binary values and is easier to read
+十六进制特别常见，因为：
+- 1 个十六进制位 = 4 个二进制位
+- 比二进制更短、更易读
 
-## 5. Boolean logic
+## 5. 布尔逻辑
 
-Basic gates:
-- AND
-- OR
-- NOT
-- XOR
+基础逻辑门：
+- 与 AND
+- 或 OR
+- 非 NOT
+- 异或 XOR
 
-Boolean logic is the foundation for all digital circuits, CPU operations, and arithmetic.
+布尔逻辑是数字电路和 CPU 运算的基础。
 
-## 6. CPU internals
+## 6. CPU 内部结构
 
-A CPU typically contains:
-- ALU: arithmetic and logical unit
-- control unit: decodes instructions and coordinates execution
-- registers: fast temporary storage
-- cache: fast memory close to CPU
+CPU 通常包含：
+- ALU：算术逻辑单元
+- 控制单元：解码和协调执行
+- 寄存器：高速临时存储
+- Cache：更靠近 CPU 的缓存
 
-## 7. Fetch-decode-execute
+## 7. 取指令-解码-执行
 
-A processor performs a loop like:
-1. fetch instruction from memory
-2. decode it
-3. execute it
-4. update state
+处理器通常循环执行：
+1. 取指令
+2. 解码指令
+3. 执行指令
+4. 更新状态
 
-This is the core behavior of every machine.
+这是所有机器工作的基本模型。
 
-## 8. Data representation
+## 8. 数据表示方式
 
-- integers are stored in binary
-- signed integers often use two's complement
-- floats follow IEEE 754 format
+- 整数是以二进制存储的
+- 有符号整数通常使用补码
+- 浮点数遵循 IEEE 754
 
-## 9. Registers
+## 9. 寄存器
 
-Registers are fast storage inside the CPU.
-Examples:
-- general-purpose registers
-- instruction pointer
-- stack pointer
-- frame pointer
+寄存器是 CPU 内部的高速存储器。常见的有：
+- 通用寄存器
+- 指令指针
+- 栈指针
+- 基址指针
 
-## 10. Memory hierarchy
+## 10. 存储层次结构
 
-Memory is layered:
-- CPU registers
-- L1 / L2 / L3 cache
+存储器从快到慢依次是：
+- 寄存器
+- L1/L2/L3 cache
 - RAM
-- disk
-- network storage
+- 磁盘
+- 网络存储
 
-Tradeoff:
-- faster memory is smaller and more expensive
+速度越快，容量越小，成本越高。
 
-## 11. Stack vs heap
+## 11. 栈和堆
 
-### Stack
-- LIFO
-- stores local variables and return addresses
-- very fast
-- limited size
+### 栈
+- 后进先出
+- 用于函数调用和局部变量
+- 快速
+- 空间有限
 
-### Heap
-- used for dynamically allocated objects
-- larger space
-- slower than stack
-- managed manually or by GC
+### 堆
+- 用于动态分配对象
+- 空间更大
+- 比栈慢
+- 由程序员或 GC 管理
 
-## 12. Von Neumann architecture
+## 12. 冯·诺依曼架构
 
-The classic architecture stores both data and instructions in memory.
-This makes the system programmable and flexible.
+现代计算机的经典结构是：
+- 指令和数据都存储在内存中
+- CPU 负责执行
+- 控制逻辑负责调度
 
-## 13. Why do we need an OS?
+这使系统能够通用编程。
 
-The system needs a mediator between hardware and programs.
-The OS provides:
-- abstraction
-- resource management
-- protection
-- scheduling
+## 13. 为什么需要 OS
 
-## Key idea
+系统需要一个协调硬件和软件的中间层。操作系统提供：
+- 抽象
+- 资源管理
+- 保护
+- 调度
 
-The OS turns raw hardware into usable, safe, shared resources.
+## 核心观点
 
-## Quick summary
+操作系统把底层硬件转成更安全、更统一、更容易使用的资源。
 
-The CPU executes instructions, memory stores data, and the OS orchestrates access to those resources.
+## 一句话总结
+
+CPU 执行指令，内存存储数据，而操作系统负责管理这些资源并让程序能够协作运行。

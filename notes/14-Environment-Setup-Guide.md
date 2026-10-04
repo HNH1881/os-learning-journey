@@ -1,18 +1,22 @@
-# Environment Setup Guide
+# 14. 环境搭建指南
 
-## Prerequisites
+## 前置条件
 
-Before starting experiments, ensure you have the right environment.
+在开始实验前，确保你的环境具备：
+- gcc
+- nasm
+- qemu-system-x86_64
+- gdb
+- objdump
+- readelf
 
-## Arch Linux Setup
-
-### 1. Install tools
+## Arch Linux
 
 ```bash
-sudo pacman -S qemu nasm gcc gdb binutils gnu-efi linux-headers
+sudo pacman -S qemu nasm gcc gdb binutils
 ```
 
-### 2. Verify installation
+### 验证安装
 
 ```bash
 qemu-system-x86_64 --version
@@ -23,84 +27,45 @@ objdump --version
 readelf --version
 ```
 
-### 3. Create workspace
-
-```bash
-mkdir -p ~/os-experiments/bin
-mkdir -p ~/os-experiments/src
-cd ~/os-experiments
-```
-
-## Ubuntu/Debian Setup
-
-### 1. Install tools
+## Ubuntu / Debian
 
 ```bash
 sudo apt-get update
-sudo apt-get install qemu-system-x86 nasm gcc gdb binutils build-essential
+sudo apt-get install qemu-system-x86 nasm gcc gdb binutils
 ```
 
-### 2. Verify installation
-
-```bash
-qemu-system-x86_64 --version
-nasm -version
-gcc --version
-```
-
-## macOS Setup
-
-### 1. Install Homebrew (if not installed)
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
-### 2. Install tools
+## macOS
 
 ```bash
 brew install qemu nasm gcc gdb binutils
 ```
 
-### 3. Verify installation
+## 推荐目录结构
 
-```bash
-qemu-system-x86_64 --version
-nasm -version
-gcc --version
+```text
+~/os-experiments/
+├── src/
+├── build/
+├── notes/
+└── Makefile
 ```
 
-## Setting up shell aliases
-
-Add to `~/.bashrc` or `~/.zshrc`:
-
-```bash
-alias qemu-run='qemu-system-x86_64 -drive format=raw,file='
-alias nasm-compile='nasm -f elf64'
-alias objdump-dis='objdump -d'
-```
-
-## Makefile template
-
-Create `Makefile` in your experiment directory:
+## Makefile 模板
 
 ```makefile
 .PHONY: all clean run debug
 
-ASM_FLAGS = -f elf64
-CC_FLAGS = -Wall -g -O0
-LD_FLAGS = 
+AS = nasm
+CC = gcc
+QEMU = qemu-system-x86_64
 
 all: hello
 
 hello: hello.o
-	ld $< -o $@
+	ld hello.o -o hello
 
 hello.o: hello.asm
-	nasm $(ASM_FLAGS) $< -o $@
-
-clean:
-	rm -f *.o hello
+	nasm -f elf64 hello.asm -o hello.o
 
 run: hello
 	./hello
@@ -108,112 +73,83 @@ run: hello
 debug: hello
 	gdb ./hello
 
-.PHONY: all clean run debug
+clean:
+	rm -f *.o hello
 ```
 
-## QEMU commands reference
+## QEMU 常用命令
 
-### Run a boot image
+### 运行引导镜像
 
 ```bash
 qemu-system-x86_64 -drive format=raw,file=boot.bin
 ```
 
-### Run with debugging
+### 串口输出
 
 ```bash
-qemu-system-x86_64 -drive format=raw,file=boot.bin -s -S
+qemu-system-x86_64 -drive file=boot.bin,format=raw -serial stdio
 ```
 
-Then in another terminal:
+### 调试模式
 
 ```bash
-gdb
-(gdb) target remote localhost:1234
+qemu-system-x86_64 -drive file=boot.bin,format=raw -s -S
+```
+
+## GDB 常用命令
+
+```bash
+gdb program
+(gdb) break main
+(gdb) run
+(gdb) info registers
+(gdb) x/10x $rsp
+(gdb) disassemble
+(gdb) nexti
 (gdb) continue
 ```
 
-### Exit QEMU
-
-```
-Ctrl+A X
-```
-
-## GDB quick commands
-
-```
-break main          # Set breakpoint
-run                 # Start execution
-nexti               # Step one instruction
-stepi               # Step into function
-info registers      # Show register state
-x/10x $rsp          # Show stack
-disassemble         # Show assembly
-continue            # Resume execution
-quit                # Exit GDB
-```
-
-## objdump quick usage
+## objdump 与 readelf 常用命令
 
 ```bash
-objdump -d prog                    # Full disassembly
-objdump -t prog                    # Symbol table
-objdump -s prog                    # Section contents
-objdump -h prog                    # Section headers
+objdump -d program
+readelf -h program
+readelf -l program
+readelf -s program
 ```
 
-## readelf quick usage
+## strace 使用示例
 
 ```bash
-readelf -h file                    # ELF header
-readelf -l file                    # Program headers
-readelf -S file                    # Section headers
-readelf -s file                    # Symbol table
+strace ./program
+strace -e trace=write ./program
 ```
 
-## strace usage
+## 常见问题
 
-```bash
-strace ./program                   # Trace all syscalls
-strace -e trace=open,read ./prog   # Specific syscalls
-strace -o log.txt ./program        # Save to file
-```
-
-## Useful environment variables
-
-```bash
-export EDITOR=vim
-export CFLAGS="-Wall -g -O0"
-export LDFLAGS=""
-```
-
-## Troubleshooting
-
-### QEMU not found
+### QEMU 找不到
 
 ```bash
 which qemu-system-x86_64
 ```
 
-If not found, reinstall with package manager.
+### NASM 语法错误
 
-### nasm syntax error
+检查输出格式：
+- `-f elf64`：Linux 64 位 ELF
+- `-f bin`：原始引导扇区二进制
 
-Make sure you're using the correct output format:
-- `-f elf64` for 64-bit ELF
-- `-f bin` for raw binary
+### 链接失败
 
-### ld error
+确认 object 文件格式和链接器版本匹配。
 
-Check that object file format matches linker expectations.
+### GDB 无法连接
 
-### GDB connection refused
+确保 QEMU 是用 `-s -S` 启动的。
 
-Make sure QEMU is running with `-s -S` flags first.
+## 下一步
 
-## Next steps
-
-Once environment is set up:
-1. Start with [[12-QEMU-NASM-GCC-Experiments]]
-2. Follow the experiments in order
-3. Keep notes in [[13-Experiment-Progress-Log]]
+接着进入：
+- [[12-QEMU+NASM+GCC实验清单]]
+- [[15-mini-kernel项目计划]]

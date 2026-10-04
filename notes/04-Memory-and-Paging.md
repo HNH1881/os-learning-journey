@@ -1,99 +1,94 @@
-# 04. Memory and Paging
+# 04. 内存与分页
 
-## 1. Why memory management matters
+## 1. 为什么内存管理很重要
 
-If user programs directly accessed physical memory, they could overwrite each other or corrupt the kernel.
-The OS solves this with abstraction and protection.
+如果用户程序直接访问物理内存，它们可能覆盖彼此的内存，甚至破坏内核。为了避免这种情况，操作系统引入了内存抽象和保护机制。
 
-## 2. Virtual memory
+## 2. 虚拟内存
 
-Programs use virtual addresses, not physical addresses.
-The OS maps virtual addresses to physical memory via page tables.
+程序使用的是虚拟地址，而不是直接使用物理地址。
+操作系统通过页表把虚拟地址映射到物理内存地址。
 
-This creates an illusion that each program has its own large and private memory space.
+这样每个程序都能拥有自己的“虚拟地址空间”。
 
-## 3. Paging
+## 3. 分页
 
-Paging divides memory into fixed-size pages.
-Typical page size:
+分页将内存切成固定大小的页。常见页大小：
 - 4 KB
 
-This improves memory management and allows OS-controlled mapping.
+分页使内存管理更灵活，也利于虚拟内存和保护实现。
 
-## 4. Page tables
+## 4. 页表
 
-x86_64 uses hierarchical paging.
-A typical translation uses:
+x86_64 使用层级分页：
 - PML4
 - PDPT
 - PD
 - PT
 
-Each level is a table with 512 entries.
+每一层都是一个表，通常有 512 个入口。
 
-## 5. Virtual address layout
+## 5. 虚拟地址的分解
 
-A 48-bit virtual address is typically split into:
-- 9 bits for PML4 index
-- 9 bits for PDPT index
-- 9 bits for PD index
-- 9 bits for PT index
-- 12 bits for page offset
+48 位虚拟地址通常被分成：
+- 9 位 PML4 索引
+- 9 位 PDPT 索引
+- 9 位 PD 索引
+- 9 位 PT 索引
+- 12 位页偏移
 
-## 6. Example translation flow
+## 6. 地址翻译流程
 
-A virtual address goes through:
-1. PML4 lookup
-2. PDPT lookup
-3. PD lookup
-4. PT lookup
-5. final physical page + offset
+虚拟地址的转换通常经过：
+1. PML4 查找
+2. PDPT 查找
+3. PD 查找
+4. PT 查找
+5. 得到物理页地址 + 页内偏移
 
 ## 7. CR3
 
-`CR3` stores the physical address of the current page table.
-It tells the CPU which address space is active.
+`CR3` 保存当前页表的物理地址。
+它告诉 CPU 当前使用哪个地址空间。
 
-This is essential for process isolation.
+这对于进程隔离非常关键。
 
-## 8. Page fault
+## 8. 缺页异常（Page Fault）
 
-A page fault occurs when a page is not mapped, is not present, or lacks permission.
-Common causes:
-- page not allocated
-- page not loaded into memory
-- writing to read-only page
-- invalid access
+当访问一个尚未映射、未加载或没有权限的页时，会触发缺页异常。
+常见原因：
+- 页未分配
+- 页不在内存中
+- 对只读页写入
+- 非法访问
 
-The OS handles page faults by:
-- allocating a page
-- loading data into memory
-- updating the page table
-- resuming execution
+内核会处理这些情况：
+- 分配页面
+- 把数据加载到内存
+- 更新页表
+- 恢复执行
 
-## 9. Identity mapping
+## 9. 恒等映射（Identity Mapping）
 
-Early kernel boot code often uses identity mapping:
-- virtual address == physical address
+启动阶段常见做法是恒等映射：
+- 虚拟地址 == 物理地址
 
-This is simpler for initial setup.
+这样能简化早期内核初始化。
 
-## 10. Why paging is so important
+## 10. 为什么分页很重要
 
-Paging enables:
-- memory isolation
-- process virtual address spaces
-- page-level permissions
-- page fault handling
-- lazy allocation
-- demand paging
-- security boundaries
+分页支持：
+- 内存隔离
+- 进程虚拟地址空间
+- 页权限控制
+- 缺页处理
+- 按需分配
+- 安全边界
 
-## 11. Key relationship
+## 11. 核心关系
 
-Paging connects the CPU execution model and OS memory management.
-It is one of the most important ideas in operating systems.
+分页把 CPU 执行模型和操作系统的内存管理连接起来，几乎是现代 OS 的基石。
 
-## Quick summary
+## 一句话总结
 
-Paging is the mechanism that maps virtual addresses to physical memory and allows the OS to isolate processes and manage memory safely.
+分页机制把虚拟地址翻译成物理内存地址，并让操作系统能够隔离进程、管理权限和处理内存异常。

@@ -1,51 +1,48 @@
-# 02. Assembly Language
+# 02. 汇编语言
 
-## 1. What is assembly?
+## 1. 什么是汇编
 
-Assembly is a low-level representation of machine instructions.
-It is closer to the CPU than C, Java, Python, or other high-level languages.
+汇编是一种接近机器指令的低级语言，它比 C、Java、Python 这些高层语言更贴近 CPU。
 
-## 2. Why learn assembly?
+## 2. 为什么要学汇编
 
-Because assembly helps you understand:
-- CPU instructions
-- memory addresses
-- registers
-- function calls
-- system calls
-- the difference between source code and machine code
+因为汇编能帮助你理解：
+- CPU 指令如何工作
+- 内存如何访问
+- 函数调用是怎么发生的
+- 系统调用怎么触发
+- 高层代码如何变成机器代码
 
-## 3. Registers
+## 3. 寄存器
 
-Registers are CPU-internal storage.
-Common x86_64 registers:
+寄存器是 CPU 内部的高速存储器。常见 x86_64 寄存器：
 - RAX, RBX, RCX, RDX
 - RSI, RDI
 - RSP, RBP
 - RIP
 - R8-R15
 
-Important points:
-- registers are very fast
-- there are only a small number of them
-- they are heavily used during execution
+关键点：
+- 寄存器非常快
+- 数量有限
+- 运行时高度活跃
 
-## 4. Common instruction categories
+## 4. 常见指令类别
 
-### Data movement
+### 数据搬运
 - MOV
 - LEA
 - PUSH
 - POP
 
-### Arithmetic
+### 算术运算
 - ADD
 - SUB
 - INC
 - DEC
 - IMUL
 
-### Logic
+### 逻辑运算
 - AND
 - OR
 - XOR
@@ -53,7 +50,7 @@ Important points:
 - SHL
 - SHR
 
-### Comparison and jumps
+### 比较和跳转
 - CMP
 - JMP
 - JE
@@ -61,23 +58,23 @@ Important points:
 - JG
 - JL
 
-### Function calls
+### 函数调用
 - CALL
 - RET
 
-## 5. System calls
+## 5. 系统调用
 
-System calls allow user programs to ask the kernel to do privileged work.
-On Linux x86_64:
-- `rax` = syscall number
-- `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9` = arguments
-- `syscall` triggers the transition to kernel mode
+系统调用让用户程序请求内核执行特权操作。Linux x86_64 下：
+- `rax`：系统调用号
+- `rdi`、`rsi`、`rdx`、`rcx`、`r8`、`r9`：参数
+- `syscall`：触发用户态到内核态切换
 
-Example:
-- `write` uses syscall number 1
-- `exit` uses syscall number 60
+例如：
+- `write`
+- `exit`
+- `read`
 
-## 6. Example: Linux assembly hello world
+## 6. 简单示例：Linux 汇编版 Hello World
 
 ```asm
 section .data
@@ -99,29 +96,29 @@ _start:
     syscall
 ```
 
-## 7. Why assembly matters for OS study
+## 7. 为什么汇编对操作系统学习很重要
 
-Assembly makes the following visible:
-- function call mechanics
-- stack usage
-- CPU register behavior
-- memory data movement
-- system call invocation
-- kernel entry points
+汇编能让你看到：
+- 函数调用真实方式
+- 栈的使用方式
+- 寄存器的工作方式
+- 系统调用如何进入内核
+- 内核入口点的本质
 
-## 8. C to assembly
+## 8. C 到汇编
 
-A C compiler translates code into assembly and then into machine code.
-This is how high-level code becomes CPU-specific instructions.
+C 编译器会把高级代码翻译成汇编，然后再编译成机器码。
 
-Example:
+例如：
+
 ```c
 int add(int a, int b) {
     return a + b;
 }
 ```
 
-might compile into something like:
+可能编译成：
+
 ```asm
 add:
     mov eax, edi
@@ -129,22 +126,22 @@ add:
     ret
 ```
 
-## 9. Stack frame model
+## 9. 栈帧模型
 
-A function call typically does this:
-- save return address
-- allocate stack space for locals
-- use base pointer and stack pointer
-- restore state on return
+函数调用通常会：
+- 保存返回地址
+- 为局部变量分配栈空间
+- 使用基址指针和栈指针
+- 返回时恢复执行状态
 
-## 10. Key idea
+## 10. 核心思想
 
-Assembly reveals the actual machine behavior under every high-level program.
+汇编揭示了所有高级代码背后的真实 CPU 行为。
 
-## Quick checklist
+## 学习清单
 
-- [ ] Understand registers
-- [ ] Understand jump instructions
-- [ ] Understand stack operations
-- [ ] Understand syscall convention
-- [ ] Connect C code to assembly output
+- [ ] 理解寄存器
+- [ ] 理解跳转指令
+- [ ] 理解栈操作
+- [ ] 理解系统调用约定
+- [ ] 能把 C 代码和汇编对应起来

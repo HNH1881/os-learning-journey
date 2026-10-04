@@ -1,487 +1,120 @@
-# Experiment Progress Log
+# 13. 实验进度日志
 
-## Purpose
+## 用途
 
-Track your hands-on experiments with QEMU, NASM, and GCC.
-After each experiment, fill in this log.
+记录你每次做 QEMU、NASM、GCC 实验时的过程和收获。
 
-## Experiment Template
+## 模板
 
-### Experiment [Number]: [Title]
+### 实验编号：XXX
 
-**Date:** YYYY-MM-DD
-**Status:** [ ] Started [ ] In Progress [ ] Completed
+**日期：**
+**状态：** [ ] 已开始 [ ] 进行中 [ ] 完成
 
-#### Objective
+#### 目标
 
-What are you trying to understand or build?
+#### 使用工具
 
-#### Tools used
+- 工具 1
+- 工具 2
 
-- Tool 1 and version
-- Tool 2 and version
+#### 操作步骤
 
-#### Steps taken
+1. 步骤 1
+2. 步骤 2
+3. 步骤 3
 
-1. Step 1
-2. Step 2
-3. Step 3
-
-#### Code written
+#### 代码
 
 ```asm
-; assembly code here
+; 代码
 ```
 
-or
+#### 输出
 
-```c
-// C code here
+```text
+输出内容
 ```
 
-#### Output
+#### 观察
 
-What did the program output?
+#### 学到的东西
 
-#### Observation
+- 学到的点 1
+- 学到的点 2
 
-What did you observe?
-Did it match your expectation?
+#### 遇到的问题
 
-#### What I learned
+- 问题 1：
+- 解决方法：
 
-- Insight 1
-- Insight 2
-- Insight 3
-
-#### Issues encountered
-
-- Issue 1: Description and how I solved it
-- Issue 2: Description and how I solved it
-
-#### Next step
-
-What experiment comes next?
+#### 下一步
 
 ---
 
-## Actual experiments
+## 实验记录
 
-### Experiment 1: Hello World in Assembly
+### 实验 1：Hello World 汇编
 
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
+**日期：**
+**状态：** [ ] 已开始 [ ] 进行中 [ ] 完成
 
-#### Objective
+#### 目标
 
-Write and run a minimal x86_64 assembly program on Linux.
+#### 输出
 
-#### Tools used
+#### 观察
 
-- NASM
-- ld (linker)
-- Arch Linux
+#### 学到的东西
 
-#### Steps taken
+#### 问题
 
-1. Write hello.asm
-2. Assemble with nasm
-3. Link with ld
-4. Run ./hello
-5. Verify exit code
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 2: C to Assembly
+#### 下一步
 
 ---
 
-### Experiment 2: C to Assembly
+### 实验 2：C 到汇编
 
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
+**日期：**
+**状态：** [ ] 已开始 [ ] 进行中 [ ] 完成
 
-#### Objective
+#### 目标
 
-Compile C to assembly and understand the mapping.
+#### 输出
 
-#### Tools used
+#### 观察
 
-- GCC
-- objdump
+#### 学到的东西
 
-#### Steps taken
+#### 问题
 
-1. Write simple.c
-2. Compile with gcc -S
-3. Read simple.s
-4. Compile and objdump
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 3: Boot Sector
+#### 下一步
 
 ---
 
-### Experiment 3: Boot Sector in QEMU
+### 实验 3：Boot Sector
 
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
+**日期：**
+**状态：** [ ] 已开始 [ ] 进行中 [ ] 完成
 
-#### Objective
+#### 目标
 
-Write a minimal bootloader and run it in QEMU.
+#### 输出
 
-#### Tools used
+#### 观察
 
-- NASM
-- QEMU
+#### 学到的东西
 
-#### Steps taken
+#### 问题
 
-1. Write boot.asm
-2. Assemble to boot.bin
-3. Run in QEMU
-4. See output
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 4: Debugging with GDB
+#### 下一步
 
 ---
 
-### Experiment 4: Debugging with GDB
+## 最终总结
 
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
+在所有实验结束后，写一段总结：
 
-#### Objective
-
-Learn to use GDB to step through code and inspect state.
-
-#### Tools used
-
-- GCC
-- GDB
-
-#### Steps taken
-
-1. Compile with -g flag
-2. Start gdb
-3. Set breakpoint at main
-4. Step through code
-5. Inspect registers
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 5: Fork and Process Creation
-
----
-
-### Experiment 5: Fork and Process Creation
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Understand fork and parent-child process relationship.
-
-#### Tools used
-
-- GCC
-- strace
-
-#### Steps taken
-
-1. Write fork_test.c
-2. Compile
-3. Run and see output
-4. Trace with strace
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 6: Race Conditions
-
----
-
-### Experiment 6: Race Conditions and Mutex
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Observe race conditions and test mutex protection.
-
-#### Tools used
-
-- GCC
-- pthread
-
-#### Steps taken
-
-1. Write race.c (unprotected)
-2. Run multiple times and observe different results
-3. Write race_safe.c (with mutex)
-4. Compare results
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 7: Pipes and IPC
-
----
-
-### Experiment 7: Pipes and IPC
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Understand inter-process communication via pipes.
-
-#### Tools used
-
-- GCC
-- shell
-
-#### Steps taken
-
-1. Write pipe_test.c
-2. Compile and run
-3. Test shell pipes like ls | grep
-4. Observe data flow
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 8: File System and inode
-
----
-
-### Experiment 8: Filesystem and inode
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Understand inodes, hard links, and soft links.
-
-#### Tools used
-
-- ls
-- stat
-- ln
-
-#### Steps taken
-
-1. Create a test file
-2. Check its inode
-3. Create hard link and soft link
-4. Observe differences
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 9: Signal Handling
-
----
-
-### Experiment 9: Signal Handling
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Understand signals and asynchronous event handling.
-
-#### Tools used
-
-- GCC
-- signal
-
-#### Steps taken
-
-1. Write signal_test.c
-2. Compile
-3. Run and press Ctrl+C
-4. Observe handler
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 10: ELF File Format Analysis
-
----
-
-### Experiment 10: ELF File Format
-
-**Date:** 
-**Status:** [ ] Started [ ] In Progress [ ] Completed
-
-#### Objective
-
-Understand ELF executable file structure.
-
-#### Tools used
-
-- readelf
-- objdump
-- hexdump
-
-#### Steps taken
-
-1. Compile a simple program
-2. Use readelf to view structure
-3. Use objdump to view code
-4. Check symbol table
-
-#### Output
-
-```
-```
-
-#### Observation
-
-
-#### What I learned
-
-
-#### Issues encountered
-
-
-#### Next step
-
-Experiment 11: Protected Mode and CPU Modes
-
----
-
-## Summary
-
-After completing all experiments, write a summary of what you've learned.
+- 我最容易犯的错误是什么？
+- 哪个实验最难？
+- 最关键的理解是什么？

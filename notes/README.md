@@ -1,42 +1,38 @@
-# OS Learning Notes
+# 操作系统学习笔记
 
-This folder is an Obsidian vault for learning computers and operating systems from the ground up.
+这是一个适合 Obsidian 的操作系统学习知识库，内容从计算机底层知识出发，逐步深入到：
 
-## Vault overview
-
-This vault is designed to help you study from the lowest level of computing upward:
-
-- digital logic and binary
-- CPU and registers
-- machine instructions and assembly
-- boot process and CPU modes
-- memory and paging
-- processes and threads
+- 数字电路与二进制
+- CPU 和寄存器
+- 汇编与机器指令
+- 启动流程与 CPU 模式
+- 内存与分页
+- 进程与线程
 - IPC
-- filesystem
-- I/O and drivers
-- operating system design patterns
+- 文件系统
+- I/O 与设备驱动
+- 操作系统整体设计
 
-## Suggested reading order
+## 推荐阅读顺序
 
-1. [[00-Index]]
-2. [[01-Computer-Principles]]
-3. [[02-Assembly-Language]]
-4. [[03-Boot-and-CPU-Modes]]
-5. [[04-Memory-and-Paging]]
-6. [[05-Processes-and-Threads]]
-7. [[06-IPC-and-Filesystem]]
-8. [[07-I-O-and-Drivers]]
-9. [[08-Study-Checklist]]
-10. [[09-Note-Template]]
-11. [[10-Weekly-Review]]
-12. [[11-Knowledge-Map]]
-13. [[12-QEMU-NASM-GCC-Experiments]]
-14. [[13-Experiment-Progress-Log]]
-15. [[14-Environment-Setup-Guide]]
-16. [[15-Mini-Kernel-Project-Plan]]
+1. [[00-索引]]
+2. [[01-计算机原理]]
+3. [[02-汇编语言]]
+4. [[03-启动与CPU模式]]
+5. [[04-内存与分页]]
+6. [[05-进程与线程]]
+7. [[06-IPC与文件系统]]
+8. [[07-I/O与设备驱动]]
+9. [[08-学习清单]]
+10. [[09-笔记模板]]
+11. [[10-每周复盘]]
+12. [[11-知识地图]]
+13. [[12-QEMU+NASM+GCC实验清单]]
+14. [[13-实验进度日志]]
+15. [[14-环境搭建指南]]
+16. [[15-mini-kernel项目计划]]
 
-## Recommended environment
+## 学习环境建议
 
 - Arch Linux + Hyprland
 - QEMU
@@ -47,33 +43,32 @@ This vault is designed to help you study from the lowest level of computing upwa
 - readelf
 - vim / nvim
 
-## Core idea
+## 核心思想
 
-The OS sits between hardware and user programs. It abstracts complex hardware into useful interfaces and manages resources safely.
+操作系统位于硬件和用户程序之间。它把复杂硬件抽象成���全、统一、可管理的接口，并负责资源分配、任务调度和保护。
 
-The learning path is:
-- understand hardware
-- understand CPU execution
-- understand memory and boot process
-- understand processes and synchronization
-- understand filesystem and I/O
-- then understand OS design as a whole
+学习路径大致是：
+- 先理解硬件
+- 再理解 CPU 执行
+- 再理解启动和内存
+- 再理解进程和同步
+- 再理解文件系统和 I/O
+- 最后理解整个操作系统设计
 
-## Use in Obsidian
+## 在 Obsidian 中的使用方式
 
-- Keep each note focused on one topic.
-- Add backlinks to related topics.
-- Add code examples where helpful.
-- Add quick summary blocks at the end of each note.
-- Use the review template after each study session.
-- Use the project plan when building your real kernel prototype.
+- 每篇笔记只讲一个主题
+- 用反向链接连接相关笔记
+- 需要时加入代码示例
+- 每篇笔记结尾留一个简短总结
+- 每次学习后复盘一次
 
-## Questions to keep revisiting
+## 常反复思考的问题
 
-- What is the CPU actually doing?
-- What is the difference between a program and a process?
-- Why are virtual addresses needed?
-- Why does the kernel exist?
-- How does booting work?
-- Why does file access use inode and directory mapping?
-- Why do interrupts and DMA matter?
+- CPU 实际上在做什么？
+- 程序和进程到底有什么区别？
+- 为什么需要虚拟地址？
+- 为什么内核是必要的？
+- 启动时到底发生了什么？
+- 为什么文件访问要靠 inode 和目录映射？
+- 中断和 DMA 为什么重要？

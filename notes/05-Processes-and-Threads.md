@@ -1,119 +1,117 @@
-# 05. Processes and Threads
+# 05. 进程与线程
 
-## 1. Program vs process
+## 1. 程序和进程的区别
 
-A program is static code on disk.
-A process is a running instance of a program.
+程序是磁盘上的静态代码。
+进程是一个正在运行的程序实例。
 
-A process has:
-- code
-- data
-- heap
-- stack
-- page table
-- process ID
-- execution state
+进程包含：
+- 代码
+- 数据
+- 堆
+- 栈
+- 页表
+- 进程 ID
+- 执行状态
 
-## 2. Process creation
+## 2. 进程创建
 
-The OS creates a process by:
-- allocating a new task structure
-- setting up page tables
-- loading the program image
-- setting initial registers
-- placing it in the ready queue
+操作系统创建进程时通常会：
+- 分配新的进程结构
+- 建立页表
+- 加载程序镜像
+- 初始化寄存器
+- 将其放入就绪队列
 
-## 3. Process state model
+## 3. 进程状态
 
-Common states:
-- new
-- ready
-- running
-- waiting/blocked
-- terminated
+常见状态：
+- new：新建
+- ready：就绪
+- running：运行中
+- waiting / blocked：等待中
+- terminated：已结束
 
-## 4. Threads
+## 4. 线程
 
-A thread is the execution unit inside a process.
-Threads share:
-- process address space
-- heap
-- global data
+线程是进程内部的执行单元。
+线程共享：
+- 进程地址空间
+- 堆
+- 全局变量
 
-Threads have:
-- their own stack
-- their own registers
-- their own execution context
+线程有：
+- 自己的栈
+- 自己的寄存器
+- 自己的执行上下文
 
-## 5. Process vs thread
+## 5. 进程和线程的区别
 
-Process:
-- isolated virtual memory
-- heavier switching cost
-- strong isolation
+### 进程
+- 独立虚拟地址空间
+- 创建/切换成本更高
+- 隔离更强
 
-Thread:
-- same address space
-- lighter switching cost
-- easier shared-state communication
+### 线程
+- 共享地址空间
+- 切换成本更低
+- 更适合并发执行
 
-## 6. Context switch
+## 6. 上下文切换（Context Switch）
 
-Context switch is the process of:
-- saving the current process/thread state
-- restoring the next process/thread state
-- switching the CPU to the next execution context
+上下文切换指：
+- 保存当前线程/进程的状态
+- 恢复下一个线程/进程的状态
+- 切换 CPU 到新任务
 
-## 7. Scheduler
+## 7. 调度器
 
-The scheduler chooses which runnable task should execute next.
-Typical goals:
-- fairness
-- throughput
-- responsiveness
-- low waiting time
+调度器决定哪个可运行任务下一步获得 CPU。
+常见目标：
+- 公平性
+- 吞吐量
+- 响应时间
+- 易用性
 
-## 8. Scheduling algorithms
+## 8. 常见调度算法
 
-Common algorithms:
-- round robin
-- FCFS
-- shortest job first
-- priority scheduling
-- multilevel feedback queue
+- Round Robin 轮询
+- FCFS 先来先服务
+- SJF 最短作业优先
+- Priority scheduling 优先级调度
+- multilevel feedback queue 多级反馈队列
 
-## 9. Time slice
+## 9. 时间片
 
-A time slice is the amount of CPU time a task receives before the scheduler preempts it.
+时间片是调度器给每个任务分配的一段执行时间。
 
-Too short:
-- heavy context switching overhead
+太短会导致：
+- 上下文切换过多
 
-Too long:
-- poor responsiveness
+太长会导致：
+- 系统响应变差
 
-## 10. Why threads are useful
+## 10. 为什么线程很常见
 
-Threads enable concurrency in a single process.
-They are used for:
-- server workloads
-- UI responsiveness
-- background tasks
-- data processing
+线程允许一个进程中同时进行多个任务。
+常见用途：
+- Web 服务器
+- 图形界面
+- 后台处理
+- 数据处理
 
-## 11. Why threads are dangerous
+## 11. 为什么线程也危险
 
-Threads share memory, so they can interfere with each other.
-This introduces:
-- race conditions
-- deadlocks
-- starvation
-- inconsistent data
+线程共享内存，因此容易出现：
+- 竞争条件
+- 死锁
+- 饥饿
+- 数据不一致
 
-## Key idea
+## 核心思想
 
-Processes provide isolation, and threads provide concurrency inside that isolation boundary.
+进程提供隔离，线程提供并发。调度器负责在有限的 CPU 资源上决定谁��什么时候执行。
 
-## Quick summary
+## 一句话总结
 
-The OS schedules tasks, manages their state, and switches processor context so many tasks appear to run at the same time.
+操作系统通过进程和线程模型把“并发执行”变成可管理的抽象，并靠调度器协调 CPU 使用。

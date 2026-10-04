@@ -1,74 +1,67 @@
-# 08. Study Checklist
+# 08. 学习清单
 
-## Core foundation
+## 基础知识
 
-- [ ] Binary number system and hex
-- [ ] Boolean logic and gates
-- [ ] CPU structure and purpose
-- [ ] Registers and instruction execution
-- [ ] Memory hierarchy and cache
-- [ ] Stack and heap
+- [ ] 二进制、十六进制和补码
+- [ ] 布尔逻辑和门电路
+- [ ] CPU、寄存器、控制流
+- [ ] 内存层次结构和缓存
+- [ ] 栈和堆
+- [ ] 汇编基础
+- [ ] Linux 系统调用基础
 
-## Assembly and low-level execution
+## 启动和底层执行
 
-- [ ] x86_64 register basics
-- [ ] MOV, ADD, CMP, JMP, CALL, RET
-- [ ] Stack frame understanding
-- [ ] Linux syscall convention
-- [ ] writing a hello world in assembly
-- [ ] running assembly in QEMU or on Linux
+- [ ] 实模式
+- [ ] BIOS / UEFI 启动流程
+- [ ] 引导扇区结构
+- [ ] 保护模式
+- [ ] 长模式
+- [ ] GDT 基础
 
-## Startup and boot
+## 内存与分页
 
-- [ ] BIOS / UEFI startup flow
-- [ ] real mode
-- [ ] boot sector layout
-- [ ] 0x7C00 loading convention
-- [ ] boot sector magic 0xAA55
-- [ ] protected mode
-- [ ] GDT basics
-- [ ] long mode
-
-## Memory and paging
-
-- [ ] virtual memory
-- [ ] page size and page tables
-- [ ] PML4, PDPT, PD, PT
+- [ ] 虚拟内存
+- [ ] 页表
 - [ ] CR3
-- [ ] page fault
-- [ ] identity mapping
-- [ ] process isolation via paging
+- [ ] 缺页异常
+- [ ] 恒等映射
+- [ ] 进程地址隔离
 
-## Processes and threads
+## 进程和线程
 
-- [ ] process lifecycle
-- [ ] thread vs process
-- [ ] context switch
-- [ ] scheduler basics
-- [ ] time slice
-- [ ] race condition
-- [ ] mutex and semaphores
+- [ ] 进程生命周期
+- [ ] 线程与进程区别
+- [ ] 上下文切换
+- [ ] 调度器基础
+- [ ] 时间片
+- [ ] 竞态条件
+- [ ] 互斥锁和信号量
 
-## OS abstractions
+## 操作系统抽象
 
 - [ ] fork
 - [ ] exec
-- [ ] system call flow
-- [ ] user mode vs kernel mode
-- [ ] IPC mechanisms
-- [ ] filesystem and inode
-- [ ] device drivers and interrupts
-- [ ] DMA and I/O scheduling
+- [ ] 用户态 / 内核态
+- [ ] 系统调用
+- [ ] IPC
+- [ ] 文件系统与 inode
+- [ ] 设备驱动与中断
+- [ ] DMA 与 I/O 调度
 
-## Practice goals
+## 实践目标
 
-- [ ] Run a minimal boot sector in QEMU
-- [ ] Compile a simple C program and inspect the assembly
-- [ ] Understand a page table at a conceptual level
-- [ ] Explain how a process is created and scheduled
-- [ ] Explain how a filesystem maps names to inodes
-- [ ] Describe how interrupts and DMA work in a simple device pipeline
+- [ ] 用汇编写 Hello World
+- [ ] 在 QEMU 中运行引导扇区
+- [ ] 把 C 编译成汇编并观察
+- [ ] 了解进程创建和 exec 流程
+- [ ] 理解文件系统中的 inode
+- [ ] 理解中断和 DMA 的作用
 
-## Final objective
+## 最终目标
 
-By the end of the journey, you should be able to explain how a computer boots, how memory is virtualized, how processes run, and how the OS manages hardware resources safely and efficiently.
+最终你应该能解释：
+- 计算机如何启动
+- 内存如何虚拟化
+- 进程如何运行
+- 操作系统如何安全管理硬件资源

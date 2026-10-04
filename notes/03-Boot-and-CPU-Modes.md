@@ -1,36 +1,34 @@
-# 03. Boot and CPU Modes
+# 03. 启动与CPU模式
 
-## 1. Boot process
+## 1. 启动流程
 
-When the machine powers on, the CPU begins in a very minimal state.
-The startup flow is usually:
+计算机上电后，CPU 以非常原始的状态开始。通常顺序为：
 
-1. BIOS or UEFI initializes hardware
-2. bootloader is loaded
-3. kernel is loaded from disk
-4. kernel sets up system state
-5. user space starts
+1. BIOS 或 UEFI 初始化硬件
+2. 引导程序被加载
+3. 内核从磁盘加载
+4. 内核初始化系统状态
+5. 用户空间开始运行
 
-## 2. Real mode
+## 2. 实模式（Real Mode）
 
-Real mode is the original x86 mode.
-It has:
-- 16-bit execution
-- very limited memory space
-- no real memory protection
-- direct segment:offset addressing
+实模式是 x86 最初的工作模式，特点：
+- 16 位执行
+- 有限的内存地址空间
+- 没有真正的内存保护
+- 直接使用 segment:offset 地址
 
-The boot sector is normally loaded to `0x7C00`.
+启动扇区通常被加载到 `0x7C00`。
 
-## 3. Why boot sector matters
+## 3. 启动扇区为什么重要
 
-The boot sector is the first code the CPU runs after the BIOS loads it.
-It is tiny and often just enough to:
-- print something
-- load more code
-- jump into the next stage
+启动扇区是 CPU 在 BIOS 读取后执行的第一段代码。它通常只是做很少的工作：
+- 打印文字
+- 继续加载下一阶段代码
+- 跳转到更大的启动逻辑
 
-Example boot sector:
+示例：
+
 ```asm
 [BITS 16]
 [ORG 0x7C00]
@@ -50,78 +48,72 @@ print_string:
 .done:
     ret
 
-msg db "Hello from boot sector!", 0x0D, 0x0A, 0
+msg db "Hello from bootloader!", 0x0D, 0x0A, 0
 
 times 510-($-$$) db 0
 dw 0xAA55
 ```
 
-## 4. BIOS interrupt 0x10
+## 4. BIOS 中断 0x10
 
-`int 0x10` is a BIOS service for video output.
-Using `AH = 0x0E` prints a character in teletype mode.
+`int 0x10` 是 BIOS 提供的显示服务。使用 `AH = 0x0E` 可以输出一个字符。
 
-## 5. Why `0xAA55`?
+## 5. 为什么 `0xAA55`
 
-The last two bytes of the boot sector are `0xAA55`.
-This marks the sector as a valid boot sector.
+启动扇区最后两个字节必须是：
+- `0x55 0xAA`
 
-## 6. Protected mode
+它表示这个扇区是一个可引导扇区。
 
-Protected mode is the true foundation of modern OSes.
-It introduces:
-- 32-bit execution
-- better memory management
-- segmentation
-- protection checks
-- privilege concepts
+## 6. 保护模式（Protected Mode）
+
+保护模式是现代操作系统的基础。它引入：
+- 大地址空间
+- 更好的内存保护
+- 分段机制
+- 特权级检查
 
 ## 7. GDT
 
-GDT = Global Descriptor Table.
-It defines code and data segments and their properties.
-It tells the CPU:
-- where code/data segments begin
-- how large they are
-- what permissions they have
+GDT = Global Descriptor Table，全局描述符表。
+它定义：
+- 代码段和数据段的基址、大小
+- 访问限制
+- 权限级别
 
-A basic GDT entry structure includes:
-- base address
-- limit
-- access rights
-- type
-- privilege level
+它告诉 CPU 哪些段可以访问，哪些不能访问。
 
-## 8. Why switch modes?
+## 8. 为什么必须切换模式
 
-Real mode is not enough for modern operating systems because it lacks:
-- memory protection
-- large address spaces
-- flexible privilege models
-- paging support
+实模式不足以支持现代操作系统，因为它缺乏：
+- 内存保护
+- 大型地址空间
+- 稳定的特权模型
+- 分页支持
 
-## 9. Long mode
+## 9. 长模式（Long Mode）
 
-Long mode is the x86_64 execution mode.
-It adds:
-- 64-bit registers
-- 64-bit pointers
-- modern paging support
-- aggressive address space management
+长模式是 x86_64 的工作模式。它带来：
+- 64 位寄存器
+- 64 位指针
+- 更现代的分页支持
+- 更大地址空间
 
-## 10. The mode progression
+现代 Linux 内核通常在长模式下运行。
 
-A modern system typically transitions:
-- real mode
-- protected mode
-- long mode
+## 10. 模式转换顺序
 
-This progression reflects the evolution from minimal booting to full OS execution.
+通常从：
+- 实模式
+- 保护模式
+- 长模式
 
-## Key idea
+逐步升级，这反映出系统从最小启动环境到完整 OS 执行环境的演进。
 
-The system does not start in a modern OS mode. It starts in a minimal hardware mode and gradually moves into a safe, managed execution environment.
+## 核心思想
 
-## Quick summary
+系统一开始不是直接进入现代内核状态，而是从一个极简的硬件模式开始，之后逐步进入更安全、更强大的运行环境。
 
-Boot sector code runs in real mode, then the system moves into protected mode and long mode as the OS prepares the environment for real execution.
+## 一句话总结
+
+启动扇区在实模式下运行，然后系统逐步过渡到保护模式和长模式，最终建立可运行的操作系统环境。

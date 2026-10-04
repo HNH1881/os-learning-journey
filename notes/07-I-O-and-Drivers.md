@@ -1,89 +1,103 @@
-# 07. I/O and Drivers
+# 07. I/O与设备驱动
 
-## 1. I/O basics
+## 1. I/O 基础
 
-I/O is how the OS interacts with external devices.
-Examples:
-- keyboard
-- display
-- disk
-- sound
-- network card
+I/O = Input / Output，输入输出。
+它包括：
+- 键盘输入
+- 显示输出
+- 磁盘读写
+- 网络收发
+- USB 设备
 
-## 2. Device driver
+## 2. 设备驱动
 
-A device driver is the software layer that talks to a specific device.
-It translates OS requests into device-specific control and data transfer.
+设备驱动是操作系统和硬件之间的桥接层。
+它负责：
+- 控制设备寄存器
+- 配置设备状态
+- 读取和写入数据
+- 处理中断
+- 提供统一接口给上层系统
 
-## 3. Why drivers are needed
+## 3. 为什么需要驱动
 
-Devices differ dramatically in protocol and behavior.
-The OS hides this complexity behind a common API.
+不同设备差异很大：
+- 磁盘是块设备
+- 键盘是字符设备
+- 网卡是网络设备
+- GPU 有专门的图形命令流
 
-Examples:
-- read
-- write
-- open
-- close
-- ioctl
+OS 不想让上层程序知道每台设备的细节，因此需要统一抽象和驱动层。
 
-## 4. Block devices vs character devices
+## 4. 块设备和字符设备
 
-### Block devices
-- transfer data in chunks
-- used for disks, USB devices
-- support random access
+### 块设备
+- 以固定长度块传输数据
+- 例如磁盘、USB
+- 适用随机访问和大块读写
 
-### Character devices
-- transfer streams of bytes
-- used for terminal, serial, keyboard
+### 字符设备
+- 以字节流方式处理
+- 例如串口、键盘、终端
 
-## 5. Interrupts
+## 5. 中断（Interrupt）
 
-An interrupt is an asynchronous notification from hardware to the CPU.
-Examples:
-- disk read completed
-- key press occurred
-- timer expired
-- network packet arrived
+中断是硬件主动通知 CPU：某个事件发生了。
+例如：
+- 键盘按下
+- 磁盘读完
+- 定时器到时
+- 网络包到达
 
-The CPU pauses current work, handles the interrupt, and returns.
+CPU 暂停当前工作，处理中断，再恢复原来的任务。
 
 ## 6. DMA
 
-DMA stands for Direct Memory Access.
-It allows a device to move data to/from memory without CPU copying each byte.
+DMA = Direct Memory Access，直接内存访问。
+它允许设备直接访问内存，而不让 CPU 逐字节搬运数据。
 
-This is very important for:
-- storage devices
-- network cards
-- graphics pipelines
-- audio/video streaming
+这对于：
+- 磁盘
+- 网卡
+- 音视频
+- 图形处理都很重要
 
-## 7. Buffering and caching
+## 7. 缓冲区与缓存
 
-The OS often uses buffers to smooth out differences between producer and consumer speeds.
-Examples:
-- page cache
-- kernel read/write buffers
-- network buffers
+操作系统通常使用：
+- 用户缓冲区
+- 内核缓冲区
+- 页缓存
+- write-back
 
-## 8. I/O scheduling
+目的：
+- 平滑速度差异
+- 缩短同步延迟
+- 减少不必要的设备访问
 
-When many I/O requests are queued, the OS may reorder them to improve throughput.
-Examples:
-- elevator scheduling
-- shortest seek time first
+## 8. I/O 调度
 
-## 9. Why I/O abstraction matters
+当很多 I/O 请求排队时，操作系统可能进行调度。
+例如：
+- 最短寻道时间优先
+- 电梯算法
+- 先来先服务
 
-Programs should not have to know every hardware detail.
-The OS provides a stable, structured interface that hides hardware differences.
+目标是：
+- 提高吞吐量
+- 降低寻道时间
+- 保持公平性
 
-## Key idea
+## 9. 为什么抽象很重要
 
-I/O management is how the kernel turns raw hardware into usable resources for user programs.
+程序不应该知道每个设备的底层细节。
+操作系统提供统一接口，让用户程序用统一方式访问设备。
 
-## Quick summary
+## 核心思想
 
-Interrupts, DMA, drivers, and buffers are all part of the OS's mechanism for managing devices efficiently and safely.
+I/O 管理把底层硬件转成上层可用的抽象，保证设备可用且程序可管理。
+
+## 一句话总结
+
+设备驱动、中断、DMA 和缓存一起构成了操作系统管理 I/O 的关键机制。

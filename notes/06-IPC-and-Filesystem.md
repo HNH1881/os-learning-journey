@@ -1,113 +1,114 @@
-# 06. IPC and Filesystem
+# 06. IPC与文件系统
 
 ## 1. IPC
 
-IPC stands for Inter-Process Communication.
-It allows separate processes to communicate and coordinate.
+IPC = Inter-Process Communication，进程间通信。
+它允许不同进程交换数据或者协同工作。
 
-## 2. Why IPC is needed
+## 2. 为什么需要 IPC
 
-A program often needs to exchange data or events with another process.
-Examples:
-- shell piping output from one command to another
-- worker processes in a server
-- producer/consumer models
-- log collection
+现实中的程序常常需要多个进程合作：
+- shell 把一个命令的输出送给另一个命令
+- 服务进程之间需要同步状态
+- 数据采集器和处理器协作
 
-## 3. Common IPC mechanisms
+## 3. 常见 IPC 机制
 
-### Pipe
-- one-way data flow
-- used in shell pipelines
-- very common in Unix-like systems
+### 管道（Pipe）
+- 单向流式通信
+- 常用于 shell 管道
 
 ### FIFO
-- named pipe
-- supports communication across unrelated processes
+- 命名管道
+- 适合无亲缘关系的进程通信
 
-### Message queue
-- structured messages
-- good for asynchronous messaging
+### 消息队列
+- 结构化消息
+- 更适合异步消息传递
 
-### Shared memory
-- fast form of sharing
-- requires synchronization for correctness
+### 共享内存
+- 高性能共享区域
+- 需要同步保护
 
-### Sockets
-- general communication mechanism
-- supports local or network communication
+### Socket
+- 通用通信机制
+- 可用于本地或网络通信
 
-### Signals
-- lightweight notifications
-- often used for process control
+### Signal
+- 轻量通知
+- 多用于事件通知
 
-## 4. Pipe example
+### Semaphore
+- 用于同步、资源计数
+
+## 4. 管道示例
 
 ```bash
 ls | grep .c
 ```
 
-The output of `ls` is written into a pipe, and `grep` reads from that pipe.
+这就是经典的 pipe 用法：一个进程输出，另一个进程读取。
 
-## 5. Filesystem overview
+## 5. 文件系统概述
 
-A filesystem organizes storage into:
-- files
-- directories
-- permissions
-- metadata
+文件系统把磁盘抽象成：
+- 文件
+- 目录
+- 路径
+- 权限
+- 元数据
 
-This lets the OS abstract raw disk blocks into user-facing objects.
+它让程序不需要直接看磁盘块布局，而是可以使用“文件名 + 路径”。
 
-## 6. File and directory abstraction
+## 6. 文件与目录抽象
 
-A file is a sequence of bytes.
-A directory is a mapping from names to file entries.
+文件是字节序列。
+目录是名字到文件项的映射。
 
-This gives users an interface like:
+因此用户看到的是：
 - `/home/user/project/main.c`
 
-instead of raw disk block addresses.
+而不是底层的磁盘块地址。
 
 ## 7. inode
 
-An inode is a metadata record for a file.
-It stores:
-- file size
-- ownership
-- permissions
-- timestamps
-- block pointers
+inode 是文件系统中的关键元数据结构。
+它保存：
+- 文件大小
+- 文件类型
+- 权限
+- 时间戳
+- 数据块位置
 
-The directory stores names, but the inode stores the actual file metadata.
+它是文件的“底层描述对象”。
 
-## 8. Why inode matters
+## 8. 为什么 inode 很重要
 
-The name itself is not the file content.
-The inode is the real file object.
-Directories map names to inodes.
+文件名只是目录里的映射，真正的文件对象是 inode。
+目录保存的是名称到 inode 的关系。
 
-## 9. Filesystem cache and performance
+## 9. 文件系统缓存与性能
 
-The OS uses caches to reduce disk traffic.
-Popular examples include:
-- page cache
-- inode cache
-- directory entry cache
+操作系统会缓存：
+- 页缓存
+- inode 缓存
+- 目录项缓存
 
-## 10. Filesystem and security
+这样可以减少磁盘访问次数，提高速度。
 
-The filesystem enforces:
-- permission bits
-- ownership
-- directory access rules
+## 10. 文件系统与安全
 
-This integrates with kernel/user privilege boundaries.
+文件系统负责：
+- 读写权限
+- 所有权
+- 目录访问控制
 
-## Key idea
+这会和内核权限模型联系起来。
 
-IPC lets processes communicate; filesystems let the OS present storage in a safe and usable form.
+## 核心思想
 
-## Quick summary
+IPC 让不同进程协同工作，文件系统让存储变成安全、结构化、可管理的对象。
 
-Processes are isolated, but they can still cooperate through IPC. Filesystems provide long-term, structured storage across process boundaries.
+## 一句话总结
+
+进程彼此隔离，但可以通过 IPC 协作；文件系统则让存储可以有结构、可访问、可保护地长期保存数据。
