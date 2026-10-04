@@ -1,0 +1,67 @@
+# 04. Memory and Paging
+
+## 1. Why memory management matters
+
+Programs should not access physical memory directly because that would break isolation and crash the kernel.
+
+程序不应该直接访问物理内存，否则会破坏隔离并可能破坏内核。
+
+The OS introduces virtual memory to solve this problem.
+
+操作系统引入虚拟内存来解决这个问题。
+
+## 2. Virtual memory
+
+Virtual memory gives each process an address space that appears isolated and contiguous.
+
+虚拟内存给每个进程一个独立且看似连续的地址空间。
+
+The OS translates these virtual addresses into physical addresses using page tables.
+
+操作系统用页表把这些虚拟地址翻译成物理地址。
+
+## 3. Paging
+
+Paging divides memory into fixed-size pages, commonly 4 KB.
+
+分页将内存分成固定大小的页，通常是 4 KB。
+
+This makes memory management much more flexible and safer.
+
+这让内存管理更灵活、更安全。
+
+## 4. Page tables
+
+x86_64 uses multi-level paging with PML4, PDPT, PD, and PT.
+
+x86_64 使用多级分页，包括 PML4、PDPT、PD 和 PT。
+
+Each level stores entries that point to the next level.
+
+每一层都保存指向下一层的条目。
+
+## 5. Page fault
+
+A page fault occurs when a page is not mapped or lacks permission.
+
+缺页异常会在页未映射或没有权限时触发。
+
+The kernel handles it by allocating memory or fixing the mapping.
+
+内核会通过分配内存或修正映射来处理它。
+
+## 6. CR3
+
+CR3 holds the physical address of the current page table.
+
+CR3 保存当前页表的物理地址。
+
+This is how the CPU knows which address space is active.
+
+这就是 CPU 知道当前使用哪个地址空间的方式。
+
+## 7. Summary / 总结
+
+Paging is the foundation of process isolation and safe memory access.
+
+分页是进程隔离和安全内存访问的基础。

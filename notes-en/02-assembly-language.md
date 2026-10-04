@@ -1,0 +1,113 @@
+# 02. Assembly Language
+
+## 1. What is assembly?
+
+Assembly is a low-level programming language that is close to the CPU instruction set.
+
+汇编是一种接近 CPU 指令集的低级编程语言。
+
+It is more direct than C or Java because it exposes the machine's execution model.
+
+它比 C 或 Java 更直接，因为它直接暴露机器的执行模型。
+
+## 2. Why learn assembly?
+
+Assembly helps explain register use, memory access, function calls, and system calls.
+
+学习汇编有助于解释寄存器使用、内存访问、函数调用和系统调用。
+
+It is the bridge between source code and real hardware behavior.
+
+它是源代码与真实硬件行为之间的桥梁。
+
+## 3. Registers
+
+Registers are fast storage inside the CPU.
+
+寄存器是 CPU 内部的高速存储器。
+
+Examples include RAX, RBX, RCX, RDX, RSI, RDI, RSP, RBP, and RIP.
+
+例如 RAX、RBX、RCX、RDX、RSI、RDI、RSP、RBP 和 RIP。
+
+## 4. Common instructions
+
+Common operations include MOV, ADD, SUB, JMP, CMP, CALL, and RET.
+
+常见操作包括 MOV、ADD、SUB、JMP、CMP、CALL 和 RET。
+
+These are the basic building blocks of a program's execution flow.
+
+这些是程序执行流程的基础构件。
+
+## 5. System calls
+
+A system call asks the kernel to perform privileged work on the program's behalf.
+
+系统调用要求内核代表程序执行特权操作。
+
+On x86_64 Linux, registers like rax and rdi carry the syscall number and arguments.
+
+在 x86_64 Linux 上，rax 和 rdi 等寄存器承载系统调用号和参数。
+
+## 6. Example: hello world
+
+```asm
+section .data
+    msg db "Hello, World!", 0x0a
+    len equ $ - msg
+
+section .text
+    global _start
+
+_start:
+    mov rax, 1
+    mov rdi, 1
+    lea rsi, [msg]
+    mov rdx, len
+    syscall
+
+    mov rax, 60
+    xor rdi, rdi
+    syscall
+```
+
+```asm
+section .data
+    msg db "Hello, World!", 0x0a
+    len equ $ - msg
+
+section .text
+    global _start
+
+_start:
+    mov rax, 1
+    mov rdi, 1
+    lea rsi, [msg]
+    mov rdx, len
+    syscall
+
+    mov rax, 60
+    xor rdi, rdi
+    syscall
+```
+
+## 7. Why it matters for OS study
+
+Assembly exposes how a CPU actually works beneath the high-level language.
+
+汇编揭示了在高级语言之下，CPU 实际如何工作。
+
+This includes the stack, the call/return mechanism, and system-call entry.
+
+这包括堆栈、调用与返回机制以及系统调用入口。
+
+## 8. Summary / 总结
+
+Assembly is the language closest to the machine.
+
+汇编是最接近机器的语言。
+
+It is essential for understanding how operating systems boot, schedule, and protect programs.
+
+它对于理解操作系统如何启动、调度和保护程序至关重要。
