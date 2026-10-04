@@ -28,6 +28,9 @@ This vault is designed to help you study from the lowest level of computing upwa
 7. [[06-IPC-and-Filesystem]]
 8. [[07-I-O-and-Drivers]]
 9. [[08-Study-Checklist]]
+10. [[09-Note-Template]]
+11. [[10-Weekly-Review]]
+12. [[11-Knowledge-Map]]
 
 ## Recommended environment
 
@@ -58,6 +61,7 @@ The learning path is:
 - Add backlinks to related topics.
 - Add code examples where helpful.
 - Add quick summary blocks at the end of each note.
+- Use the review template after each study session.
 
 ## Questions to keep revisiting
 
